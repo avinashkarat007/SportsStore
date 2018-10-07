@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using System.Web.Mvc;
+using Moq;
+using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Concrete;
+using SportsStore.Domain.Entities;
 
 namespace SportsStore.WebUI.Infrastructure
 {
@@ -24,9 +28,12 @@ namespace SportsStore.WebUI.Infrastructure
         {
             return kernel.GetAll(serviceType);
         }
+
         private void AddBindings()
         {
             // put bindings here
+
+            kernel.Bind<IProductsRepository>().To<EFProductRepository>();
         }
     }
 }
