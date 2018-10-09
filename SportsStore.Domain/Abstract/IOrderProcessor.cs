@@ -7,12 +7,8 @@ using SportsStore.Domain.Entities;
 
 namespace SportsStore.Domain.Abstract
 {
-    public interface IProductsRepository
+    public interface IOrderProcessor
     {
-        IEnumerable<Product> Products { get; }
-
-        void saveProduct(Product product);
-
-        Product DeleteProduct(int productID);
+        void ProcessOrder(Cart cart, ShippingDetails shippingDetails);
     }
 }
