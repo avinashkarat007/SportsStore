@@ -45,6 +45,7 @@ namespace SportsStore.WebUI.Controllers
             return View(model);
         }
 
+        // THis is a comment.
         public FileContentResult GetImage(int productId)
         {
             var prod = repository.Products
