@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 using SportsStore.WebUI.Models;
+using System.Web.Configuration;
+using SportsStore.WebUI.Infrastructure;
 
 namespace SportsStore.WebUI.Controllers
 {
@@ -19,6 +21,28 @@ namespace SportsStore.WebUI.Controllers
         {
             this.repository = productRepository;
         }
+
+        public ActionResult Home()
+        {
+            var configData = new Dictionary<string, string>();
+
+            //foreach (string item in WebConfigurationManager.AppSettings)
+            //{
+            //    configData.Add(item, WebConfigurationManager.AppSettings["item"]);
+            //}
+
+            var nuDefaults = WebConfigurationManager.GetWebApplicationSection("newUserDefaults") as NewUserDefaultsSection;
+
+            if (nuDefaults != null)
+            {
+                configData.Add("City", nuDefaults.City);
+                configData.Add("Country", nuDefaults.Country);
+                configData.Add("Language", nuDefaults.Language);
+            }
+
+            return View("Index", configData);
+        }
+
 
         // GET: Product
         public ViewResult List(string category, int page = 1)

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "SecondForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>SecondForm</h2>
+<html>
+<body class="container">
+    @using (Html.BeginForm("CompleteForm", "Registration"))
+    {
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input class="form-control" name="country" placeholder="Enter country">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    }
+</body>
+</html>
